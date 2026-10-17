@@ -1,0 +1,22 @@
+DINO RUNNERS V5 — QUICK SETUP (GitHub + Cloudflare Pages)
+
+1. Open config.js and replace PASTE_YOUR_SB_PUBLISHABLE_KEY_HERE with the Supabase publishable key (sb_publishable_...). Do NOT use the secret key or Google client secret.
+2. Upload the individual files from this ZIP to the ROOT of your GitHub repo pitman25/dino-runners-website. Commit directly to main. Keep index.html, style.css, app.js, config.js, about.html and dino-runners-logo.png in the same directory. Cloudflare Pages will redeploy automatically.
+3. In Supabase Authentication > URL Configuration, confirm Site URL https://dino-runners-website.pages.dev and redirect URL https://dino-runners-website.pages.dev/**.
+4. Google Cloud OAuth app is currently in Testing. Only listed test users can log in until app is published.
+5. For profile photo uploads, create the public Storage bucket and policies using the optional SQL below in Supabase SQL Editor. The site works without this step if users don't upload photos.
+6. Visit the website and click Continue with Google. If no profile is created, copy the displayed error message to troubleshoot.
+
+IMPORTANT: Supabase public profiles can be deleted by their owner. This V5 does NOT fully delete Supabase Auth users; implementing true account deletion requires a secure server-side Edge Function. Do not confuse profile deletion with account deletion.
+
+Optional avatar storage SQL (run once in Supabase SQL Editor):
+
+insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
+values ('avatars','avatars',true,2097152,array['image/jpeg','image/png','image/webp'])
+on conflict (id) do update set public=true, file_size_limit=2097152, allowed_mime_types=array['image/jpeg','image/png','image/webp'];
+
+create policy "Dino avatars publicly viewable" on storage.objects for select to anon, authenticated using (bucket_id='avatars');
+create policy "Dinos upload own avatar" on storage.objects for insert to authenticated with check (bucket_id='avatars' and (storage.foldername(name))[1] = (select auth.uid())::text);
+create policy "Dinos delete own avatar" on storage.objects for delete to authenticated using (bucket_id='avatars' and (storage.foldername(name))[1] = (select auth.uid())::text);
+
+NOTE: If these policies already exist, SQL will report a duplicate; do not rerun blindly. Public avatars are accessible by anyone with their URL.

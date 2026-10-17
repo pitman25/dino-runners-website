@@ -5,3 +5,18 @@
 .brand-logo{display:block;width:clamp(150px,17vw,210px);height:auto;object-fit:contain;mix-blend-mode:screen}
 footer .brand-logo{width:205px}
 @media(max-width:520px){.brand-logo{width:164px}footer .brand-logo{width:205px}}
+
+/* V3: keep the lime hero slogan fully inside its angled panel */
+.hero-side{min-width:0;overflow:hidden;padding-right:clamp(18px,2.5vw,45px)}
+.hero-side strong{font-size:clamp(30px,3.6vw,62px);line-height:.98;max-width:78%;overflow-wrap:normal;letter-spacing:-.015em;margin-left:22%;}
+.hero-side>span{margin-left:22%}
+.about-story{max-width:900px;margin:auto;padding:clamp(95px,12vw,160px) 24px 130px;}
+.about-story h1{font:900 clamp(72px,12vw,150px)/.85 'Barlow Condensed',Impact,sans-serif;margin:26px 0 45px;}
+.about-story h1 em{color:#b7ef62;font-style:normal}
+.about-story .story-copy{max-width:740px;color:#d5dbd0;font-size:clamp(17px,2vw,21px);line-height:1.85}
+.about-story .story-copy p{margin:0 0 26px}
+.about-story .story-copy p:last-child{color:#b7ef62;font-weight:600}
+@media(max-width:950px){.hero-side{display:none}}
+
+/* V5 member profiles; existing homepage design stays unchanged */
+.hidden{display:none!important}.auth-status{min-height:1.4em;margin:18px auto;color:var(--lime);font-size:13px;line-height:1.6}.member-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:32px}.member-card{border:1px solid #424b3e;background:#1b2019;padding:25px;overflow-wrap:anywhere}.member-card h3{font-size:30px;margin:12px 0 0}.member-card p{color:var(--muted);line-height:1.6;white-space:pre-wrap}.handle{color:var(--lime);font-size:13px}.member-avatar,.avatar-fallback{width:76px;height:76px;object-fit:cover;border-radius:50%;background:#2e3929;display:grid;place-items:center;font-size:32px}.member-prs{display:flex;flex-wrap:wrap;gap:8px}.member-prs span{border:1px solid #4d6143;padding:5px 9px;color:var(--lime);font-size:11px}.profile-area{max-width:780px;margin:55px auto 0;text-align:left;border:1px solid #44523d;padding:clamp(20px,4vw,42px);background:#1a1e19}.profile-area h3{font-size:36px;margin:0 0 20px}.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.form-grid label{display:flex;flex-direction:column;gap:8px;font-weight:700;font-size:13px}.form-grid small{font-size:11px;color:var(--muted);font-weight:400}.form-grid .full{grid-column:1/-1}.form-grid input,.form-grid textarea{width:100%;box-sizing:border-box;background:#101410;border:1px solid #59634f;color:#fff;border-radius:0;padding:13px;font:inherit;font-weight:400}.form-grid input:focus,.form-grid textarea:focus{outline:2px solid var(--lime)}.profile-actions{margin-top:25px;flex-wrap:wrap}.profile-actions .button{margin:0}.privacy-note{font-size:12px!important;margin:18px 0 0!important;text-align:left}@media(max-width:560px){.form-grid{grid-template-columns:1fr}}
