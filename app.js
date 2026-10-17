@@ -75,7 +75,7 @@
   login.addEventListener('click', async () => {
     login.disabled = true;
     setStatus('authStatus','Opening Google sign-in...');
-    const { error } = await db.auth.signInWithOAuth({ provider:'google', options:{ redirectTo: window.location.origin + '/index.html#login' } });
+    const { error } = await db.auth.signInWithOAuth({ provider:'google', options:{ redirectTo: window.location.origin + '/' } });
     if (error) { setStatus('authStatus',error.message); login.disabled = false; }
   });
   $('logoutBtn').addEventListener('click', async () => { const { error } = await db.auth.signOut(); if (error) setStatus('authStatus',error.message); else { await syncUser(); await loadDirectory(); } });
